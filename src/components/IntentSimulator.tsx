@@ -122,14 +122,14 @@ export const IntentSimulator: React.FC = () => {
 
             {/* Quick Preset Prompts */}
             <div className="space-y-2">
-              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase">Preset Examples:</span>
+              <span className="text-[11px] font-mono text-slate-600 dark:text-slate-400 uppercase font-semibold">Preset Examples:</span>
               <div className="space-y-1.5">
                 {SAMPLE_PROMPTS.map((p, idx) => (
                   <button
                     key={idx}
                     onClick={() => setPrompt(p)}
                     disabled={isSimulating}
-                    className="w-full text-left text-xs font-mono px-3 py-2 rounded-lg bg-slate-100 dark:bg-[#0a0b0e] hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-red-600 border border-slate-200 dark:border-slate-800 transition-all truncate"
+                    className="w-full text-left text-xs font-mono px-3 py-2 rounded-lg bg-slate-100 dark:bg-[#0a0b0e] hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 border border-slate-200 dark:border-slate-800 transition-all truncate font-medium"
                   >
                     "{p}"
                   </button>
@@ -161,7 +161,7 @@ export const IntentSimulator: React.FC = () => {
           {/* Execution Trace Terminal (Right 7 Cols) */}
           <div className="lg:col-span-7 bg-white dark:bg-[#12151e] p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
             
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 font-mono text-xs text-slate-500 dark:text-slate-400">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 font-mono text-xs text-slate-600 dark:text-slate-400 font-semibold">
               <div className="flex items-center gap-2">
                 <Cpu className="w-4 h-4 text-red-600" />
                 <span>RENKAIRO INTENT ORCHESTRATOR LOG STREAM</span>
@@ -176,28 +176,28 @@ export const IntentSimulator: React.FC = () => {
             {/* Output Steps */}
             <div className="bg-slate-50 dark:bg-[#0a0b0e] rounded-xl p-4 border border-slate-200 dark:border-slate-800 font-mono text-xs space-y-4 min-h-[300px]">
               {steps.length === 0 && !isSimulating && (
-                <div className="flex flex-col items-center justify-center py-16 text-slate-400 dark:text-slate-600 space-y-2">
+                <div className="flex flex-col items-center justify-center py-16 text-slate-500 dark:text-slate-400 space-y-2">
                   <Terminal className="w-8 h-8 stroke-[1.5]" />
-                  <span>Click "Simulate Orchestration" to start execution trace.</span>
+                  <span className="font-medium">Click "Simulate Orchestration" to start execution trace.</span>
                 </div>
               )}
 
               {steps.map((step, idx) => (
                 <div key={idx} className="space-y-1">
-                  <div className="flex items-center justify-between text-slate-800 dark:text-slate-200 font-bold">
-                    <span className="flex items-center gap-2 text-red-600">
+                  <div className="flex items-center justify-between text-slate-900 dark:text-slate-100 font-bold">
+                    <span className="flex items-center gap-2 text-red-600 dark:text-red-500">
                       {step.status === 'completed' ? (
-                        <CheckCircle2 className="w-4 h-4 text-red-600" />
+                        <CheckCircle2 className="w-4 h-4 text-red-600 dark:text-red-500" />
                       ) : (
-                        <Loader2 className="w-4 h-4 text-red-600 animate-spin" />
+                        <Loader2 className="w-4 h-4 text-red-600 dark:text-red-500 animate-spin" />
                       )}
                       {step.phase}
                     </span>
-                    <span className="text-[10px] text-slate-400">{step.timestamp}</span>
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">{step.timestamp}</span>
                   </div>
-                  <div className="text-slate-700 dark:text-slate-300 pl-6">{step.detail}</div>
+                  <div className="text-slate-800 dark:text-slate-200 pl-6">{step.detail}</div>
                   {step.log && (
-                    <div className="text-[11px] text-slate-600 dark:text-slate-400 pl-6 bg-slate-100 dark:bg-slate-900 p-2 rounded border border-slate-200 dark:border-slate-800">
+                    <div className="text-[11px] text-slate-800 dark:text-slate-300 pl-6 bg-slate-100 dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800">
                       {step.log}
                     </div>
                   )}

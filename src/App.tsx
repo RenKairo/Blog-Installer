@@ -17,7 +17,8 @@ export const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     const saved = localStorage.getItem('renkairo-theme');
-    return (saved === 'light' || saved === 'dark') ? saved : 'dark';
+    if (saved === 'light' || saved === 'dark') return saved;
+    return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
   const [activeTab, setActiveTab] = useState<string>('home');
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
@@ -33,6 +34,20 @@ export const App: React.FC = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [theme]);
+
+  // Adapt to OS color scheme changes if user hasn't set an explicit preference
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      const saved = localStorage.getItem('renkairo-theme');
+      if (!saved) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -81,7 +96,7 @@ export const App: React.FC = () => {
         <div className={`absolute inset-y-0 left-0 w-full sm:w-2/3 pointer-events-none ${
           isDark 
             ? 'bg-gradient-to-r from-[#0a0b0e]/90 via-[#0a0b0e]/40 to-transparent' 
-            : 'bg-gradient-to-r from-[#fcfbf9]/95 via-[#fcfbf9]/60 to-transparent'
+            : 'bg-gradient-to-r from-[#fcfbf9] via-[#fcfbf9]/85 to-transparent'
         }`} />
         
         {/* Bottom Fade into Content */}
@@ -224,12 +239,12 @@ export const App: React.FC = () => {
           <div className={`border rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl ${
             isDark ? 'bg-[#12151e] border-slate-800 text-white' : 'bg-white border-slate-200 text-slate-900'
           }`}>
-            <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
-              <div className="flex items-center gap-2 font-mono text-sm">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-700/60 pb-3">
+              <div className="flex items-center gap-2 font-mono text-sm text-slate-900 dark:text-white">
                 <Search className="w-4 h-4 text-red-600" />
                 <span>Search RenKairo Blog</span>
               </div>
-              <button onClick={() => setSearchOpen(false)} className="text-slate-400 hover:text-slate-900 dark:hover:text-white">
+              <button onClick={() => setSearchOpen(false)} className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -258,10 +273,10 @@ export const App: React.FC = () => {
                   }`}
                 >
                   <div>
-                    <div className="font-semibold text-sm group-hover:text-red-600">{post.title}</div>
-                    <div className="text-xs opacity-75">{post.summary}</div>
+                    <div className="font-semibold text-sm group-hover:text-red-600 text-slate-900 dark:text-white">{post.title}</div>
+                    <div className="text-xs text-slate-600 dark:text-slate-400">{post.summary}</div>
                   </div>
-                  <ArrowRight className="w-4 h-4 opacity-50 group-hover:text-red-600 shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-red-600 shrink-0" />
                 </div>
               ))}
             </div>

@@ -22,8 +22,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const isDark = theme === 'dark';
 
   return (
-    <nav className={`sticky top-0 z-50 px-4 lg:px-8 py-5 flex items-center justify-between transition-colors select-none ${
-      isDark ? 'bg-transparent text-slate-200' : 'bg-transparent text-slate-800'
+    <nav className={`sticky top-0 z-50 px-4 lg:px-8 py-5 flex items-center justify-between transition-colors select-none bg-transparent ${
+      isDark ? 'text-slate-200' : 'text-slate-800'
     }`}>
       
       {/* Brand Header */}

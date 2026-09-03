@@ -85,7 +85,7 @@ export const BlogReader: React.FC<BlogReaderProps> = ({ onSelectPost }) => {
             {/* Code Snippet Box */}
             {selectedPost.codeSnippet && (
               <div className="space-y-2">
-                <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-900 px-4 py-2 rounded-t-xl border border-slate-200 dark:border-slate-800 border-b-0 font-mono text-xs text-slate-600 dark:text-slate-400">
+                <div className="flex items-center justify-between bg-slate-100 dark:bg-slate-900 px-4 py-2 rounded-t-xl border border-slate-200 dark:border-slate-800 border-b-0 font-mono text-xs text-slate-700 dark:text-slate-400 font-semibold">
                   <span>{selectedPost.codeSnippet.filename}</span>
                   <button
                     onClick={() => copySnippet(selectedPost.codeSnippet!.code)}
@@ -95,30 +95,31 @@ export const BlogReader: React.FC<BlogReaderProps> = ({ onSelectPost }) => {
                     <span>{copiedCode ? 'Copied' : 'Copy Code'}</span>
                   </button>
                 </div>
-                <pre className="bg-slate-50 dark:bg-[#0a0b0e] p-5 rounded-b-xl border border-slate-200 dark:border-slate-800 font-mono text-xs sm:text-sm text-slate-800 dark:text-slate-200 overflow-x-auto leading-relaxed">
+                <pre className="bg-slate-50 dark:bg-[#0a0b0e] p-5 rounded-b-xl border border-slate-200 dark:border-slate-800 font-mono text-xs sm:text-sm text-slate-900 dark:text-slate-200 overflow-x-auto leading-relaxed">
                   <code>{selectedPost.codeSnippet.code}</code>
                 </pre>
               </div>
             )}
 
             {/* Markdown Main Article Content */}
-            <div className="prose prose-slate dark:prose-invert max-w-none space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed font-sans border-t border-slate-200 dark:border-slate-800 pt-8">
+            <div className="prose prose-slate dark:prose-invert max-w-none space-y-6 text-slate-800 dark:text-slate-200 leading-relaxed font-sans border-t border-slate-200 dark:border-slate-800 pt-8">
               <div dangerouslySetInnerHTML={{ 
                 __html: selectedPost.content
+                  .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900 dark:text-white">$1</strong>')
                   .replace(/### (.*)/g, '<h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3 font-mono">$1</h3>')
-                  .replace(/#### (.*)/g, '<h4 class="text-lg font-semibold text-red-600 mt-6 mb-2">$1</h4>')
-                  .replace(/```text([\s\S]*?)```/g, '<pre class="bg-slate-50 dark:bg-[#0a0b0e] p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-800 dark:text-slate-300 overflow-x-auto"><code>$1</code></pre>')
-                  .replace(/`([^`]+)`/g, '<code class="bg-slate-100 dark:bg-slate-900 text-red-600 px-1.5 py-0.5 rounded font-mono text-xs">$1</code>')
+                  .replace(/#### (.*)/g, '<h4 class="text-lg font-semibold text-red-600 dark:text-red-500 mt-6 mb-2">$1</h4>')
+                  .replace(/```(bash|typescript|java|text|sh)?([\s\S]*?)```/g, '<pre class="bg-slate-100 dark:bg-[#0a0b0e] p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-900 dark:text-slate-200 overflow-x-auto my-4"><code>$2</code></pre>')
+                  .replace(/`([^`]+)`/g, '<code class="bg-slate-100 dark:bg-slate-800/80 text-red-600 dark:text-red-400 px-1.5 py-0.5 rounded font-mono text-xs border border-slate-200 dark:border-slate-700/60 font-semibold">$1</code>')
                   .replace(/\n\n/g, '<p class="my-4"></p>')
               }} />
             </div>
 
             {/* Article Footer Tags */}
             <div className="pt-8 border-t border-slate-200 dark:border-slate-800 space-y-4">
-              <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase">Article Topics & Technologies:</div>
+              <div className="text-xs font-mono text-slate-600 dark:text-slate-400 uppercase font-semibold">Article Topics & Technologies:</div>
               <div className="flex flex-wrap gap-2">
                 {selectedPost.tags.map((t, idx) => (
-                  <span key={idx} className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-[#12151e] border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">
+                  <span key={idx} className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-[#12151e] border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-slate-300 font-medium">
                     #{t}
                   </span>
                 ))}
@@ -147,7 +148,7 @@ export const BlogReader: React.FC<BlogReaderProps> = ({ onSelectPost }) => {
 
               {/* Search Bar */}
               <div className="relative min-w-[280px]">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={searchQuery}
@@ -186,10 +187,10 @@ export const BlogReader: React.FC<BlogReaderProps> = ({ onSelectPost }) => {
                   <div className="space-y-4">
                     {/* Category & Read Time */}
                     <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="px-3 py-1 rounded-md bg-red-600/10 text-red-600 border border-red-600/30 font-medium">
+                      <span className="px-3 py-1 rounded-md bg-red-600/10 text-red-600 border border-red-600/30 font-semibold">
                         {post.category}
                       </span>
-                      <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                      <span className="text-slate-600 dark:text-slate-400 flex items-center gap-1 font-medium">
                         <Clock className="w-3.5 h-3.5" />
                         {post.readTime}
                       </span>
@@ -208,8 +209,8 @@ export const BlogReader: React.FC<BlogReaderProps> = ({ onSelectPost }) => {
 
                   {/* Footer Info */}
                   <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-mono">
-                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
-                      <User className="w-3.5 h-3.5 text-slate-400" />
+                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
+                      <User className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
                       <span>{post.author.name}</span>
                     </div>
                     <span className="text-red-600 group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold">

@@ -93,7 +93,7 @@ export const ArchitectureViewer: React.FC = () => {
 
             {/* Layer 1: Client */}
             <div className="space-y-2">
-              <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 tracking-wider">Layer 1: Client & User Interface</div>
+              <div className="text-[11px] font-mono uppercase text-slate-600 dark:text-slate-400 font-semibold tracking-wider">Layer 1: Client & User Interface</div>
               <button
                 onClick={() => setSelectedComp(ARCHITECTURE_COMPONENTS[0])}
                 className={`w-full p-4 rounded-xl border text-left transition-all flex items-center justify-between ${
@@ -121,7 +121,7 @@ export const ArchitectureViewer: React.FC = () => {
 
             {/* Layer 2: API Gateway */}
             <div className="space-y-2">
-              <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 tracking-wider">Layer 2: API Gateway & Security</div>
+              <div className="text-[11px] font-mono uppercase text-slate-600 dark:text-slate-400 font-semibold tracking-wider">Layer 2: API Gateway & Security</div>
               <button
                 onClick={() => setSelectedComp(ARCHITECTURE_COMPONENTS[1])}
                 className={`w-full p-4 rounded-xl border text-left transition-all flex items-center justify-between ${
@@ -149,7 +149,7 @@ export const ArchitectureViewer: React.FC = () => {
 
             {/* Layer 3: Control Plane & Node Mesh */}
             <div className="space-y-2">
-              <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 tracking-wider">Layer 3: Orchestration & Compute Nodes</div>
+              <div className="text-[11px] font-mono uppercase text-slate-600 dark:text-slate-400 font-semibold tracking-wider">Layer 3: Orchestration & Compute Nodes</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   onClick={() => setSelectedComp(ARCHITECTURE_COMPONENTS[2])}
@@ -189,7 +189,7 @@ export const ArchitectureViewer: React.FC = () => {
 
             {/* Layer 4: Compute Engines */}
             <div className="space-y-2">
-              <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 tracking-wider">Layer 4: Target Compute Execution Layer</div>
+              <div className="text-[11px] font-mono uppercase text-slate-600 dark:text-slate-400 font-semibold tracking-wider">Layer 4: Target Compute Execution Layer</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   onClick={() => setSelectedComp(ARCHITECTURE_COMPONENTS[4])}
@@ -229,7 +229,7 @@ export const ArchitectureViewer: React.FC = () => {
           <div className="lg:col-span-5 bg-white dark:bg-[#12151e] p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm theme-card">
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
               <div>
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase">Component Inspector</span>
+                <span className="text-xs font-mono text-slate-600 dark:text-slate-400 uppercase font-semibold">Component Inspector</span>
                 <h3 className="text-xl font-extrabold text-slate-900 dark:text-white font-mono mt-1">{selectedComp.name}</h3>
               </div>
               <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-red-600/10 text-red-600 border border-red-600/30">
@@ -239,15 +239,15 @@ export const ArchitectureViewer: React.FC = () => {
 
             <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
               <div>
-                <h4 className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase mb-1">Description:</h4>
-                <p className="leading-relaxed">{selectedComp.description}</p>
+                <h4 className="text-xs font-mono text-slate-600 dark:text-slate-400 uppercase mb-1 font-semibold">Description:</h4>
+                <p className="leading-relaxed text-slate-700 dark:text-slate-300">{selectedComp.description}</p>
               </div>
 
               <div>
-                <h4 className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase mb-2">Technology Stack:</h4>
+                <h4 className="text-xs font-mono text-slate-600 dark:text-slate-400 uppercase mb-2 font-semibold">Technology Stack:</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedComp.tech.map((t, idx) => (
-                    <span key={idx} className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-[#0a0b0e] border border-slate-200 dark:border-slate-800 text-xs font-mono text-red-600 font-medium">
+                    <span key={idx} className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-[#0a0b0e] border border-slate-200 dark:border-slate-800 text-xs font-mono text-red-600 dark:text-red-400 font-semibold">
                       {t}
                     </span>
                   ))}
@@ -255,7 +255,7 @@ export const ArchitectureViewer: React.FC = () => {
               </div>
 
               <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
-                <h4 className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase mb-1">Implementation Detail:</h4>
+                <h4 className="text-xs font-mono text-slate-600 dark:text-slate-400 uppercase mb-1 font-semibold">Implementation Detail:</h4>
                 <p className="text-xs text-slate-800 dark:text-slate-200 font-mono leading-relaxed bg-slate-50 dark:bg-[#0a0b0e] p-3 rounded-xl border border-slate-200 dark:border-slate-800">
                   {selectedComp.details}
                 </p>

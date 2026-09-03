@@ -11,13 +11,13 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ post, onReadMore }) =>
   return (
     <div 
       onClick={() => onReadMore(post)}
-      className="bg-[#12151e] rounded-2xl border border-slate-800/80 overflow-hidden card-matte-lift cursor-pointer flex flex-col justify-between group"
+      className="bg-white dark:bg-[#12151e] rounded-2xl border border-slate-200 dark:border-slate-800/80 overflow-hidden card-matte-lift cursor-pointer flex flex-col justify-between group shadow-sm hover:shadow-md transition-all"
     >
       
       {/* Top Banner Artwork Image */}
-      <div className="h-48 bg-[#0a0b0e] relative overflow-hidden flex items-center justify-center border-b border-slate-800/80">
+      <div className="h-48 bg-slate-100 dark:bg-[#0a0b0e] relative overflow-hidden flex items-center justify-center border-b border-slate-200 dark:border-slate-800/80">
         
-        {/* Post 1: White Sumi-e Watercolor Torii Gate with Cat (The White Background Thingie!) */}
+        {/* Post 1: White Sumi-e Watercolor Torii Gate with Cat */}
         {post.id === 'post-1' && (
           <div className="w-full h-full relative bg-[#f7f5f0]">
             <img 
@@ -25,7 +25,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ post, onReadMore }) =>
               alt="Introducing RenKairo IDE - White Sumi-e Watercolor" 
               className="w-full h-full object-cover object-top filter contrast-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12151e] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#12151e] via-transparent to-transparent" />
             <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-white/90 text-red-700 text-[10px] font-mono font-bold border border-red-200 shadow-sm">
               Sumi-e Edition
             </div>
@@ -62,19 +62,19 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ post, onReadMore }) =>
               alt="Hosting RenKairo on Cloud" 
               className="w-full h-full object-cover object-center filter brightness-95 contrast-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12151e] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#12151e] via-transparent to-transparent" />
           </div>
         )}
 
-        {/* Post 4: Dark Pagoda Night */}
+        {/* Post 4: Pagoda Blossom / Startup Story */}
         {post.id === 'post-4' && (
           <div className="w-full h-full relative">
             <img 
-              src="/images/wallpaper-dark-pagoda.jpg" 
+              src="/images/wallpaper-sakura.png" 
               alt="The RenKairo Startup Story" 
               className="w-full h-full object-cover object-center filter brightness-95 contrast-125"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12151e] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#12151e] via-transparent to-transparent" />
           </div>
         )}
 
@@ -86,29 +86,29 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ post, onReadMore }) =>
           
           {/* Metadata Badge Row */}
           <div className="flex items-center gap-2 text-xs font-mono">
-            <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-red-600/10 text-red-500 border border-red-600/30">
+            <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-red-600/10 text-red-600 dark:text-red-500 border border-red-600/30">
               {post.category}
             </span>
-            <span className="text-slate-600">•</span>
-            <span className="text-slate-400">{post.date}</span>
-            <span className="text-slate-600">•</span>
-            <span className="text-slate-400">{post.readTime}</span>
+            <span className="text-slate-300 dark:text-slate-600">•</span>
+            <span className="text-slate-500 dark:text-slate-400">{post.date}</span>
+            <span className="text-slate-300 dark:text-slate-600">•</span>
+            <span className="text-slate-500 dark:text-slate-400">{post.readTime}</span>
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-bold text-white group-hover:text-red-500 transition-colors leading-snug">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-500 transition-colors leading-snug">
             {post.title}
           </h3>
 
           {/* Summary */}
-          <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
+          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
             {post.summary}
           </p>
 
         </div>
 
         {/* Read More Link */}
-        <div className="pt-4 flex items-center gap-1.5 text-xs font-mono text-red-500 font-bold group-hover:translate-x-1 transition-transform">
+        <div className="pt-4 flex items-center gap-1.5 text-xs font-mono text-red-600 dark:text-red-500 font-bold group-hover:translate-x-1 transition-transform">
           <span>Read more</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </div>
