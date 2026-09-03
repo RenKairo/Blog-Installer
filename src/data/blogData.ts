@@ -5,8 +5,8 @@ export const OFFICIAL_INSTALLER: InstallerInfo = {
   buildDate: 'September 2026',
   fileSize: '122.25 MB',
   fileSizeBytes: 122252814,
-  fileName: 'RenKairo IDE Setup 1.0.0.exe',
-  downloadUrl: 'https://github.com/mahammadazhar/RenKairo/releases/download/v1.0.0/RenKairo-IDE-Setup-1.0.0.exe',
+  fileName: 'RenKairo.IDE.Setup.1.0.0.exe',
+  downloadUrl: 'https://github.com/RenKairo/Renkairo-ui/releases/download/v1.0.0/RenKairo.IDE.Setup.1.0.0.exe',
   sha256: '9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e',
   md5: 'e10adc3949ba59abbe56e057f20f883e',
   minRequirements: {
